@@ -1,0 +1,27 @@
+<section class="card">
+  <h1>Emitir Nota Fiscal</h1>
+
+  <form [formGroup]="form" (ngSubmit)="emitirEImprimirNota()" class="form-nota">
+    <label for="produtoId">Produto</label>
+    <select id="produtoId" formControlName="produtoId">
+      <option [ngValue]="null">Selecione um produto</option>
+      @for (produto of produtos(); track $index) {
+      <option [ngValue]="produto.id">{{ produto.descricao }}</option>
+      }
+    </select>
+
+    <label for="quantidade">Quantidade</label>
+    <input id="quantidade" formControlName="quantidade" type="number" min="1" />
+
+    <button type="submit" [disabled]="form.invalid || loading || !podeEmitirImprimir()">
+      {{ loading ? 'Processando...' : 'Emitir e Imprimir Nota' }}
+    </button>
+  </form>
+
+  @if (notaFiscal(); as nota) {
+  <div style="margin-top: 1rem;">
+    <p><strong>Número da Nota:</strong> {{ nota.numero }}</p>
+    <p><strong>Status:</strong> {{ obterStatusNota() }}</p>
+  </div>
+  }
+</section>

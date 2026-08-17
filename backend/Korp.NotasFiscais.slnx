@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Services/" />
+  <Folder Name="/src/Services/Estoque/">
+    <Project Path="src/Services/Estoque/Estoque.API/Estoque.API.csproj" />
+    <Project Path="src/Services/Estoque/Estoque.Application/Estoque.Application.csproj" />
+    <Project Path="src/Services/Estoque/Estoque.Domain/Estoque.Domain.csproj" />
+    <Project Path="src/Services/Estoque/Estoque.Infrastructure/Estoque.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/Faturamento/">
+    <Project Path="src/Services/Faturamento/Faturamento.API/Faturamento.API.csproj" />
+    <Project Path="src/Services/Faturamento/Faturamento.Application/Faturamento.Application.csproj" />
+    <Project Path="src/Services/Faturamento/Faturamento.Domain/Faturamento.Domain.csproj" />
+    <Project Path="src/Services/Faturamento/Faturamento.Infrastructure/Faturamento.Infrastructure.csproj" />
+  </Folder>
+  <Project Path="Estoque.UnitTests/Estoque.UnitTests.csproj" Id="12495796-6e75-4ca7-864a-ea728a9a33a8" />
+</Solution>

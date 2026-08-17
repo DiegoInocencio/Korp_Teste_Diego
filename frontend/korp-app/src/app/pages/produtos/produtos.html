@@ -1,0 +1,91 @@
+<div class="produtos-page">
+  <section class="header-acoes">
+    <h2>Produtos em Estoque</h2>
+    <button type="button" class="btn btn-primary" (click)="toggleFormularioCadastro()">
+      {{ mostrarFormularioCadastro ? 'Fechar cadastro' : 'Cadastrar produto' }}
+    </button>
+  </section>
+
+  @if (mostrarFormularioCadastro) {
+  <form [formGroup]="formProduto" (ngSubmit)="cadastrar()" class="form-card">
+    <div class="field">
+      <label for="codigo">Código</label>
+      <input id="codigo" type="text" formControlName="codigo" />
+    </div>
+
+    <div class="field">
+      <label for="descricao">Descrição</label>
+      <input id="descricao" type="text" formControlName="descricao" />
+    </div>
+
+    <div class="field">
+      <label for="saldo">Saldo Inicial</label>
+      <input id="saldo" type="number" min="0" formControlName="saldo" />
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="toggleFormularioCadastro()">Cancelar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="formProduto.invalid || salvandoCadastro">
+        {{ salvandoCadastro ? 'Cadastrando...' : 'Cadastrar' }}
+      </button>
+    </div>
+  </form>
+  }
+
+  <table class="tabela-produtos">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Descrição</th>
+        <th>Saldo</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (produto of produtos(); track $index) {
+        <tr>
+          <td>{{ produto.codigo }}</td>
+          <td>
+            @if (editandoProdutoId() === produto.id) {
+            <form [formGroup]="formEdicao">
+              <input type="text" formControlName="descricao" class="input-inline" />
+            </form>
+            } @else {
+            {{ produto.descricao }}
+            }
+          </td>
+          <td>{{ produto.saldo }}</td>
+          <td class="acoes">
+            @if (editandoProdutoId() === produto.id) {
+            <button
+              type="button"
+              class="btn btn-primary btn-sm"
+              [disabled]="formEdicao.invalid || salvandoEdicao"
+              (click)="salvarEdicao(produto.id)"
+            >
+              {{ salvandoEdicao ? 'Salvando...' : 'Salvar' }}
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" (click)="cancelarEdicao()">Cancelar</button>
+            } @else {
+            <button type="button" class="btn btn-secondary btn-sm" (click)="iniciarEdicao(produto)">Editar</button>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              [disabled]="deletandoProdutoId() === produto.id"
+              (click)="excluir(produto)"
+            >
+              {{ deletandoProdutoId() === produto.id ? 'Excluindo...' : 'Excluir' }}
+            </button>
+            }
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="4" class="empty-cell">
+            Nenhum produto encontrado.
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

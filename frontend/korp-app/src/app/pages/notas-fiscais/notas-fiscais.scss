@@ -1,0 +1,48 @@
+.card {
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  color: #0f172a;
+}
+
+.form-nota {
+  display: grid;
+  gap: 0.75rem;
+}
+
+label {
+  font-weight: 600;
+  color: #334155;
+}
+
+select,
+input,
+button {
+  font: inherit;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.375rem;
+}
+
+select,
+input {
+  border: 1px solid #cbd5e1;
+}
+
+button {
+  border: none;
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

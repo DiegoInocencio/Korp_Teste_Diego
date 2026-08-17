@@ -1,0 +1,10 @@
+<nav class="navbar">
+  <a routerLink="/produtos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    Produtos
+  </a>
+  <a routerLink="/notasfiscais" routerLinkActive="active">Emitir Nota</a>
+</nav>
+
+<main class="content">
+  <router-outlet />
+</main>

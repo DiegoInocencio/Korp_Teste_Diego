@@ -1,0 +1,18 @@
+using Faturamento.Application.DTOs;
+using FluentValidation;
+
+namespace Faturamento.API.Validators;
+
+public class CriarNotaFiscalRequestDtoValidator : AbstractValidator<CriarNotaFiscalRequestDto>
+{
+    public CriarNotaFiscalRequestDtoValidator()
+    {
+        RuleFor(x => x.ProdutoId)
+            .NotEmpty()
+            .WithMessage("ProdutoId é obrigatório.");
+
+        RuleFor(x => x.Quantidade)
+            .GreaterThan(0)
+            .WithMessage("Quantidade deve ser maior que zero.");
+    }
+}
